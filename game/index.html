@@ -29,23 +29,29 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   }
   .topbar {
-    background: #11100E;
-    padding: 10px 11px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    border-bottom: 1px solid #2A2822;
-  }
+      background: #11100E;
+      padding: 10px 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid #2A2822;
+      overflow: hidden;
+      min-width: 0;
+    }
   .pill {
-    background: #24221C;
-    border: 1px solid #3A362D;
-    border-radius: 9px;
-    padding: 5px 9px;
-    font-size: 11.5px;
-    color: #D8CBB0;
-    line-height: 1.3;
-    white-space: nowrap;
-  }
+      background: #24221C;
+      border: 1px solid #3A362D;
+      border-radius: 9px;
+      padding: 5px 9px;
+      font-size: 11.5px;
+      color: #D8CBB0;
+      line-height: 1.3;
+      white-space: nowrap;
+      min-width: 0;
+      flex-shrink: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   .pill small { display:block; font-size: 10px; color: #988E7A; text-align: center; }
   .icon-btn { font-size: 20px; color: #C6B89E; line-height: 1; flex-shrink: 0; }
   .spacer { flex: 1; }
