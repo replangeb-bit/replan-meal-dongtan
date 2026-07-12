@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<title>리플랜 수지 · 급식 업체 안내</title>
+<meta name="description" content="리플랜 수지센터 여름방학 급식 서비스 – 급식 업체(한샘푸드) 안내">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','맑은 고딕',sans-serif;
+    background:#f4f6f4;color:#1e2b26;-webkit-font-smoothing:antialiased;
+    padding-bottom:40px;
+  }
+  header{
+    background:#0d3a30;color:#fff;padding:26px 20px 22px;text-align:center;
+  }
+  .brand{
+    font-size:12px;letter-spacing:2px;color:#9dc4b4;margin-bottom:8px;
+  }
+  header h1{
+    font-size:21px;font-weight:600;line-height:1.4;margin-bottom:8px;
+  }
+  header p{
+    font-size:13px;color:#b9d5c9;line-height:1.6;
+  }
+  .intro{
+    background:#fff;margin:16px;padding:18px 18px 16px;border-radius:14px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+  }
+  .intro h2{
+    font-size:15px;font-weight:600;color:#0d3a30;margin-bottom:8px;
+  }
+  .intro p{
+    font-size:13.5px;line-height:1.75;color:#4a5a54;
+  }
+  .tip{
+    display:flex;align-items:center;gap:6px;justify-content:center;
+    margin:4px 16px 12px;padding:9px;background:#e6efe9;border-radius:10px;
+    font-size:12.5px;color:#3f6355;
+  }
+  .slides{padding:0 16px;}
+  .slide{
+    background:#fff;border-radius:12px;overflow:hidden;margin-bottom:12px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);cursor:zoom-in;position:relative;
+  }
+  .slide img{width:100%;display:block;}
+  .slide .zoomtag{
+    position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;
+    font-size:11px;padding:4px 9px;border-radius:20px;pointer-events:none;
+  }
+  footer{
+    margin:20px 16px 0;padding:18px;background:#fff;border-radius:14px;
+    text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06);
+  }
+  footer p{font-size:13px;color:#5a6b64;line-height:1.7;}
+  footer .name{font-weight:600;color:#0d3a30;margin-bottom:6px;font-size:14px;}
+  /* 확대 화면 */
+  .zoom{
+    display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:999;
+    align-items:center;justify-content:center;
+  }
+  .zoom.open{display:flex;}
+  .zoom img{
+    width:auto;height:92vw;transform:rotate(90deg);border-radius:6px;
+  }
+  .zclose{
+    position:fixed;top:12px;right:12px;background:rgba(255,255,255,.2);border:none;
+    color:#fff;width:42px;height:42px;border-radius:50%;font-size:20px;cursor:pointer;z-index:1001;
+  }
+  .zprev,.znext{
+    position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);
+    border:none;color:#fff;width:46px;height:46px;border-radius:50%;font-size:26px;
+    cursor:pointer;z-index:1001;line-height:1;
+  }
+  .zprev{left:8px;}
+  .znext{right:8px;}
+  .zpage{
+    position:fixed;bottom:42px;left:0;right:0;text-align:center;color:#eee;
+    font-size:14px;font-weight:600;pointer-events:none;
+  }
+  .zhint{
+    position:fixed;bottom:16px;left:0;right:0;text-align:center;color:#aaa;
+    font-size:12px;pointer-events:none;
+  }
+  @media(min-width:600px){
+    .zoom img{transform:none;height:auto;max-width:92vw;max-height:88vh;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">REPLAN SUJI</div>
+  <h1>여름방학 급식<br>업체 안내</h1>
+  <p>맛, 위생, 정성을 담은 (주)한샘푸드</p>
+</header>
+
+<div class="intro">
+  <h2>믿고 맡길 수 있는 급식 파트너</h2>
+  <p>리플랜 수지센터는 여러 업체를 비교·검토한 끝에, 전문 영양사가 설계한 균형 잡힌 식단과 철저한 위생 관리 체계를 갖춘 <strong>(주)한샘푸드</strong>를 급식 파트너로 선정하였습니다. 아래에서 업체의 위생 관리, 식자재 소싱, 인증 현황을 확인하실 수 있습니다.</p>
+</div>
+
+<div class="tip">🔍 이미지를 누르면 크게 볼 수 있습니다</div>
+
+<div class="slides" id="slides"></div>
+
+<footer>
+  <p class="name">리플랜 수지 관리형 학습센터</p>
+  <p>급식 관련 문의사항은<br>언제든 편히 연락 주십시오.</p>
+</footer>
+
+<div class="zoom" id="zoom">
+  <button class="zclose" onclick="closeZoom()" aria-label="닫기">✕</button>
+  <button class="zprev" onclick="prevSlide()" aria-label="이전">‹</button>
+  <button class="znext" onclick="nextSlide()" aria-label="다음">›</button>
+  <img id="zimg" src="v1.jpg" alt="급식 업체 안내 확대">
+  <div class="zpage" id="zpage">1 / 9</div>
+  <div class="zhint">‹ › 로 넘기기 · 두 손가락으로 확대 · ✕ 닫기</div>
+</div>
+
+<script>
+  var TOTAL = 9;
+  var cur = 1;
+
+  var box = document.getElementById('slides');
+  for (var i = 1; i <= TOTAL; i++) {
+    var d = document.createElement('div');
+    d.className = 'slide';
+    d.setAttribute('data-i', i);
+    d.innerHTML = '<img src="v' + i + '.jpg" alt="급식 업체 안내 ' + i + '" loading="lazy">' +
+                  '<span class="zoomtag">🔍 크게 보기</span>';
+    d.onclick = (function(n){ return function(){ openZoom(n); }; })(i);
+    box.appendChild(d);
+  }
+
+  function render(){
+    document.getElementById('zimg').src = 'v' + cur + '.jpg';
+    document.getElementById('zpage').textContent = cur + ' / ' + TOTAL;
+  }
+  function openZoom(n){
+    cur = n; render();
+    document.getElementById('zoom').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeZoom(){
+    document.getElementById('zoom').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function prevSlide(){ cur = cur > 1 ? cur - 1 : TOTAL; render(); }
+  function nextSlide(){ cur = cur < TOTAL ? cur + 1 : 1; render(); }
+
+  document.getElementById('zoom').onclick = function(e){
+    if (e.target === this) closeZoom();
+  };
+</script>
+
+</body>
+</html>
